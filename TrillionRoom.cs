@@ -10,15 +10,16 @@ namespace TempleEscape
 {
     class TrillionRoom //: Room
     {
-        // Spørgsmålet og svarmulighederne
+        
         TreasureRoom nextRoom;
 
         private int textSpeed = 50;
         private int correctAnswer = 2;
 
 
-        // Rum specifik beskrivelse
-        public string roomDescription = "Velkommen fremmede! Besvar spørgsmålet!";        
+        // spiller velkomst og rum beskrivelse 
+        public string roomDescription = "Velkommen fremmede! Besvar spørgsmålet!";
+        // sprøgsmålet stilles
         private string question = "Hvilket land er kendt som 'The Land of the Rising Sun'?";
         private string[] options = new string[] 
         {
@@ -29,7 +30,7 @@ namespace TempleEscape
         };
 
 
-        // Handling, når spilleren træder ind i dette rum
+        // metoden der bruger string variablerne ovenfor
         public void TirllionQuestion()
         {
             ShowTextSlowly(roomDescription);
@@ -47,6 +48,7 @@ namespace TempleEscape
 
         }
 
+        //Vis tekst langsommere
         private void ShowTextSlowly(string text)
         {
             foreach (char letter in text)
