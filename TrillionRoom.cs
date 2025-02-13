@@ -8,6 +8,7 @@ using System;
 
 namespace TempleEscape
 {
+    //TEST SKAL VÆRE HER
     class TrillionRoom //: Room
     {
         
