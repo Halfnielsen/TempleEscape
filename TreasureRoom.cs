@@ -9,7 +9,8 @@ namespace TempleEscape
      class TreasureRoom //: Room
     {
         public void OpenTreasure()
-        {
+        {            
+            Console.Clear();
             Console.WriteLine("OpenTreasure");
             //Event?.Invoke();
         }
