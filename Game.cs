@@ -8,13 +8,13 @@ namespace TempleEscape
 {
     class Game
     {
-        TrillionRoom currentRoom;        
+        TreasureRoom currentRoom;        
 
         public void Play()
         {
-            currentRoom = new TrillionRoom();
+            currentRoom = new TreasureRoom();
 
-            currentRoom.TirllionQuestion();
+            currentRoom.OpenTreasure();
 
 
         }

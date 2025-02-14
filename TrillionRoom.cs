@@ -16,6 +16,7 @@ namespace TempleEscape
         TreasureRoom nextRoom;
 
         private int textSpeed = 50;
+        private int frustratedTextSpeed = 5;
         private int correctAnswer = 2;
 
 
@@ -31,21 +32,42 @@ namespace TempleEscape
             "4. Indien"
         };
 
+        public string questionCorrect = "Satans!";
 
         // metoden der bruger string variablerne ovenfor
         public void TirllionQuestion()
         {
+            
             ShowTextSlowly(roomDescription);
+
             Console.WriteLine("\n" + question);
+
             foreach (var choice in options)
             {
                 Console.WriteLine(choice);
             }
+            Console.Write("\n");
+
+            Console.ReadLine();
+
+            if (correctAnswer > 2)
+            {
+               Console.Write( "\n nææææ");
+
+            }
+            else
+            {
+                Console.Clear();
+                ShowTextFast(questionCorrect);
+            }
+            
 
             Console.ReadKey();
-            nextRoom = new TreasureRoom();
+            Console.ReadKey();
 
-            nextRoom.OpenTreasure();
+            //nextRoom = new TreasureRoom();
+
+            //nextRoom.OpenTreasure();
 
 
         }
@@ -57,6 +79,14 @@ namespace TempleEscape
             {
                 Console.Write(letter);
                 Thread.Sleep(textSpeed);
+            }
+        }
+        private void ShowTextFast(string text)
+        {
+            foreach (char letter in text)
+            {
+                Console.Write(letter);
+                Thread.Sleep(frustratedTextSpeed);
             }
         }
     }
