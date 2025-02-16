@@ -31,7 +31,9 @@ namespace TempleEscape
             "1. Kina",
             "2. Japan",
             "3. Sydkorea",
-            "4. Indien"
+            "4. Indien",
+            "5. Rejs dig op fra stolen og gå over mod døren"
+
         };
 
         public string questionCorrect = "%@#!...Godt gået!";
@@ -46,36 +48,43 @@ namespace TempleEscape
                             "Foran dig sidder en skikkelse på en trone. Silhuetten er mørk, men skærmen foran ham lyser hans ansigt op i et uhyggeligt skær.\n" +
                             "Foran ham er en stol, rettet mod skærmen. Du føler dig nærmest tvunget til at sætte dig i den... Der er dog en dør bag ham\n\n";
             ShowTextSlowly(introText);
-            Console.WriteLine("Hvad vil du gøre?");
-            Console.WriteLine("1: Sæt dig i stolen.");
-            Console.WriteLine("2: Ignorér skikkelsen og gå mod døren bag ham.\n");
 
-            Console.Write("Dit valg: ");
-            string choice = Console.ReadLine();
 
-            if (choice == "1")
+            while (true)
             {
-                Console.WriteLine("\nDu sætter dig langsomt i stolen. Skærmen foran dig blinker til liv, og skikkelsen smiler skummelt...\n");
-                Console.ReadLine();
-                ShowTextSlowly(roomDescription);
-                TirllionQuestion();
-                // Kald en metode til næste scene
+                Console.WriteLine("Hvad vil du gøre?");
+                Console.WriteLine("1: Sæt dig i stolen.");
+                Console.WriteLine("2: Ignorér skikkelsen og gå mod døren bag ham.\n");
+
+                Console.Write("Dit valg: ");
+                string choice = Console.ReadLine();
+
+                if (choice == "1")
+                {
+                    Console.WriteLine("\nDu sætter dig langsomt i stolen. Skærmen foran dig blinker til liv, og skikkelsen smiler skummelt...\n");
+                    Console.ReadLine();
+                    ShowTextSlowly(roomDescription);
+                    TirllionQuestion();
+                    break;  // Stop løkken, da et gyldigt valg er blevet lavet
+                }
+                else if (choice == "2")
+                {
+                    string ignorerHamText = "\nDu ignorerer stolen og bevæger dig mod døren. Skikkelsens blik følger dig, men han siger intet...\n";
+                    ShowTextSlowly(ignorerHamText);
+                    Console.ReadLine();
+                    IgnorerForsæt();
+                    break;  // Stop løkken, da et gyldigt valg er blevet lavet
+                }
+                else
+                {
+                    Console.WriteLine("\nDu tøver, men skikkelsen stirrer afventende på dig. Du må vælge...\n");
+                }
             }
-            else if (choice == "2")
-            {
-                string ignorerHamText = "\nDu ignorerer stolen og bevæger dig mod døren. Skikkelsens blik følger dig, men han siger intet...\n";
-                ShowTextSlowly(ignorerHamText);
-                Console.ReadLine();
-                IgnorerForsæt();
-                // Kald en metode til en alternativ scene
-            }
-            else
-            {
-                Console.WriteLine("\nDu tøver, men skikkelsen stirrer afventende på dig. Du må vælge...\n");
-            }
+            /*
             Console.WriteLine("Med en rungende stemme taler skikkelsen:\n");
 
             Console.WriteLine("\n");
+            */
         }
         public void IgnorerForsæt()
         {
@@ -87,64 +96,67 @@ namespace TempleEscape
         // metoden der bruger string variablerne ovenfor
         public void TirllionQuestion()
         {
-
-
-
-            RoomQuestion(question + options);
-
+            RoomQuestion(question);
 
             string userInput = Console.ReadLine();
             int userChoice;
 
-            if (int.TryParse(userInput, out userChoice))  // Prøver at konvertere strengen til et heltal
+            // Laver for at se om det er det korrekte input
+            if (string.IsNullOrWhiteSpace(userInput) || !int.TryParse(userInput, out userChoice))
             {
-                if (userChoice == 1)
-                {
-                    Console.WriteLine("\n NEJ!");
-                    Console.ReadLine();
-                    Console.Clear();
-                    string tryAgainText = "\nPrøv igen...\n";
-                    ShowTextSlowly(tryAgainText);
-                    TirllionQuestion();
-                }
-                else if (userChoice == 2)
-                {
-                    Console.WriteLine("\n HVAD MENER DU!?");
-                    Console.ReadLine();
-                    Console.Clear();
-                    string tryAgainText = "\nPrøv igen...\n";
-                    ShowTextSlowly(tryAgainText);
-                    TirllionQuestion();
-                }
-                else if (userChoice == 3)
-                {
-                    Console.WriteLine("\n NÆSTEN!..");
-                    Console.ReadLine();
-                    Console.Clear();
-                    string tryAgainText = "\nPrøv igen...\n";
-                    ShowTextSlowly(tryAgainText);
-                    TirllionQuestion();
-                }
-                else
-                {
-                    Console.Clear();
-                    ShowTextFast(questionCorrect);
-                    Console.ReadLine();
-                    Console.Clear();
-                    EnterNextRoom();
-                }
+                Console.Clear();
+                ShowTextSlowly("\nTænk dig om! Vælg et nummer..\n");
+                TirllionQuestion(); 
+                return;  
             }
 
-
-            Console.ReadKey();
-            Console.ReadKey();
-
-            //nextRoom = new TreasureRoom();
-
-            //nextRoom.OpenTreasure();
-
-
+            // User valg
+            if (userChoice == 1)
+            {
+                Console.Clear();
+                Console.WriteLine("\nNEJ!");
+                Console.ReadLine();
+                Console.Clear();
+                string tryAgainText = "\nPrøv igen...\n";
+                ShowTextSlowly(tryAgainText);
+                TirllionQuestion();  // Spørg igen
+            }
+            else if (userChoice == 2)
+            {
+                Console.Clear();
+                Console.WriteLine("\nHVAD MENER DU!?");
+                Console.ReadLine();
+                Console.Clear();
+                string tryAgainText = "\nPrøv igen...\n";
+                ShowTextSlowly(tryAgainText);
+                TirllionQuestion();  // Spørg igen
+            }
+            else if (userChoice == 3)
+            {
+                Console.Clear();
+                Console.WriteLine("\nNÆSTEN!..");
+                Console.ReadLine();
+                Console.Clear();
+                string tryAgainText = "\nPrøv igen...\n";
+                ShowTextSlowly(tryAgainText);
+                TirllionQuestion();  // Spørg igen
+            }
+            else if (userChoice == 5)
+            {
+                string ignorerHamText = "\nDu rejser dig fra stolen og bevæger dig mod døren. Skikkelsens blik følger dig, men han siger intet...\n";
+                ShowTextSlowly(ignorerHamText);
+                IgnorerForsæt();
+            }
+            else
+            {
+                Console.Clear();
+                ShowTextFast(questionCorrect);
+                Console.ReadLine();
+                Console.Clear();
+                EnterNextRoom();
+            }
         }
+
 
         public void RoomQuestion(string text)
         {
@@ -196,12 +208,13 @@ namespace TempleEscape
         }
         public void EnterNextRoom()
         {
-            string endingText = "\nDu svarer korrekt og føler en bølge af lettelse. Skikkelsen på tronen nikker langsomt og rejser sig.\n" +
+            string endingText = "Du svarer korrekt og føler en bølge af lettelse. Skikkelsen på tronen nikker langsomt og rejser sig.\n" +
                         "Han ser på dig med et skævt smil, og derefter bevæger han sig langsomt mod døren bag ham.\n" +
-                        "Med et tilfreds blik rækker han hånden ud og åbner døren med et knirk. Den afslører en ny vej, som lyser op i det dunkle rum.\n" +
-                        "Skikkelsen venter et øjeblik, som om han beder dig om at gå videre. Du har bestået denne prøve.\n" +
+                        "Med et tilfreds blik rækker han hånden ud og åbner døren med et knirk. \n" +
                         "Du tager et skridt fremad, klar til at træde ind i det ukendte.\n";
             ShowTextSlowly(endingText);
+            //Den afslører en ny vej, som lyser op i det dunkle rum.\n""Skikkelsen venter et øjeblik, som om han beder dig om at gå videre. Du har bestået denne prøve.
+            Console.ReadLine();
             nextRoom = new TreasureRoom();
 
             nextRoom.OpenTreasure();
