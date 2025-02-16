@@ -9,7 +9,6 @@ using System;
 namespace TempleEscape
 {
 
-    
     class TrillionRoom //: Room
     {
 
