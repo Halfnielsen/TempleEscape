@@ -44,13 +44,14 @@ namespace TempleEscape
         }
         public void RoomIntro()
         {
+            Console.Clear();
             string introText = "Du befinder dig i et mørkt rum, belyst af flakkende fakler.\n\n" +
                             "Foran dig sidder en skikkelse på en trone. Silhuetten er mørk, men skærmen foran ham lyser hans ansigt op i et uhyggeligt skær.\n" +
                             "Foran ham er en stol, rettet mod skærmen. Du føler dig nærmest tvunget til at sætte dig i den... Der er dog en dør bag ham\n\n";
             ShowTextSlowly(introText);
 
 
-            while (true)
+            while (true) //Starter en løkke og breaker den med break
             {
                 Console.WriteLine("Hvad vil du gøre?");
                 Console.WriteLine("1: Sæt dig i stolen.");
@@ -61,19 +62,22 @@ namespace TempleEscape
 
                 if (choice == "1")
                 {
-                    Console.WriteLine("\nDu sætter dig langsomt i stolen. Skærmen foran dig blinker til liv, og skikkelsen smiler skummelt...\n");
+                    Console.Clear();
+                    string sitDownText = "\nDu sætter dig langsomt i stolen. Skærmen foran dig blinker til liv, og skikkelsen smiler skummelt...\n";
+                    ShowTextSlowly(sitDownText);
                     Console.ReadLine();
                     ShowTextSlowly(roomDescription);
                     TirllionQuestion();
-                    break;  // Stop løkken, da et gyldigt valg er blevet lavet
+                    break; 
                 }
                 else if (choice == "2")
                 {
+                    Console.Clear();
                     string ignorerHamText = "\nDu ignorerer stolen og bevæger dig mod døren. Skikkelsens blik følger dig, men han siger intet...\n";
                     ShowTextSlowly(ignorerHamText);
                     Console.ReadLine();
                     IgnorerForsæt();
-                    break;  // Stop løkken, da et gyldigt valg er blevet lavet
+                    break;  
                 }
                 else
                 {
@@ -90,18 +94,20 @@ namespace TempleEscape
         {
             string tilbageigenText = ("Det nye rum åbner op og du indser....\n");
             ShowTextSlowly(tilbageigenText);
+            Console.ReadLine();
             RoomIntro();
         }
 
-        // metoden der bruger string variablerne ovenfor
+        
         public void TirllionQuestion()
         {
+            
             RoomQuestion(question);
 
             string userInput = Console.ReadLine();
             int userChoice;
 
-            // Laver for at se om det er det korrekte input
+            // Tjek for at se om indput ikke er int
             if (string.IsNullOrWhiteSpace(userInput) || !int.TryParse(userInput, out userChoice))
             {
                 Console.Clear();
@@ -110,7 +116,7 @@ namespace TempleEscape
                 return;  
             }
 
-            // User valg
+            
             if (userChoice == 1)
             {
                 Console.Clear();
@@ -119,7 +125,7 @@ namespace TempleEscape
                 Console.Clear();
                 string tryAgainText = "\nPrøv igen...\n";
                 ShowTextSlowly(tryAgainText);
-                TirllionQuestion();  // Spørg igen
+                TirllionQuestion();  //Sprøg igen
             }
             else if (userChoice == 2)
             {
@@ -129,7 +135,7 @@ namespace TempleEscape
                 Console.Clear();
                 string tryAgainText = "\nPrøv igen...\n";
                 ShowTextSlowly(tryAgainText);
-                TirllionQuestion();  // Spørg igen
+                TirllionQuestion();  
             }
             else if (userChoice == 3)
             {
@@ -139,10 +145,11 @@ namespace TempleEscape
                 Console.Clear();
                 string tryAgainText = "\nPrøv igen...\n";
                 ShowTextSlowly(tryAgainText);
-                TirllionQuestion();  // Spørg igen
+                TirllionQuestion();  
             }
             else if (userChoice == 5)
             {
+                Console.Clear();
                 string ignorerHamText = "\nDu rejser dig fra stolen og bevæger dig mod døren. Skikkelsens blik følger dig, men han siger intet...\n";
                 ShowTextSlowly(ignorerHamText);
                 IgnorerForsæt();
@@ -173,7 +180,7 @@ namespace TempleEscape
         {
             bool skip = false;
 
-            // Start en ny tråd til at lytte efter Enter-tastetryk
+            //Lytter efter Enter tryk
             Task.Run(() => CheckForEnter(ref skip)); // Passer referencen til skip variablen
 
             foreach (char letter in text)
@@ -187,10 +194,10 @@ namespace TempleEscape
                 Console.Write(letter);
                 Thread.Sleep(textSpeed);
             }
-            Console.WriteLine(); // Gør klar til ny linje efter teksten
+            Console.WriteLine(); 
         }
 
-        // Metode til at tjekke for Enter-tastetryk
+        // Metode til at tjekke for Enter tryk
         private void CheckForEnter(ref bool skip)
         {
             if (Console.ReadKey(true).Key == ConsoleKey.Enter)
