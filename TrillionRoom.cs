@@ -12,7 +12,7 @@ namespace TempleEscape
 
     class TrillionRoom //: Room
     {
-
+        //Ny test1
         AnnettesRum nextRoom;
 
         private int textSpeed = 50;
