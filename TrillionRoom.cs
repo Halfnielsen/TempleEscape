@@ -12,7 +12,7 @@ namespace TempleEscape
     class TrillionRoom //: Room
     {
 
-        TreasureRoom nextRoom;
+        AnnettesRum nextRoom;
 
         private int textSpeed = 50;
         private int frustratedTextSpeed = 5;
@@ -220,9 +220,9 @@ namespace TempleEscape
             ShowTextSlowly(endingText);
             //Den afslører en ny vej, som lyser op i det dunkle rum.\n""Skikkelsen venter et øjeblik, som om han beder dig om at gå videre. Du har bestået denne prøve.
             Console.ReadLine();
-            nextRoom = new TreasureRoom();
+            nextRoom = new AnnettesRum();
 
-            nextRoom.OpenTreasure();
+            nextRoom.SøjleRummet();
         }
     }
 }

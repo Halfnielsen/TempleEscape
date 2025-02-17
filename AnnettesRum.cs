@@ -12,6 +12,7 @@ namespace TempleEscape
 {
     internal class AnnettesRum
     {
+        ElisabethsRum nextRoom;
         public void SøjleRummet()
         {
             //Intro
@@ -83,6 +84,12 @@ namespace TempleEscape
             {
                 string succesTekst = "\nDu hører en høj, rumlende lyd og kan se muren foran dig glide til side. \nDu tøver lidt, men går så med faste skridt gennem hullet i muren.";
                 TypewriterEffect(succesTekst);
+                Console.Write("\n");
+                Console.Write("\n");
+
+                nextRoom = new ElisabethsRum();
+
+                nextRoom.Elisabeth();
             }
             else
             {
