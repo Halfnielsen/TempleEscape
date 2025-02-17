@@ -8,6 +8,7 @@ namespace TempleEscape
 {
     class KhadrasRum
     {
+        TrillionRoom nextRoom;
         public void FørsteRum() {
             Console.WriteLine("Hvilken måned på året har 28 dage?");
             string svar = Console.ReadLine();
@@ -19,6 +20,10 @@ namespace TempleEscape
             else if (svar.ToLower() == "alle") 
             {
                 Console.WriteLine("Korrekt");
+                Console.ReadLine();
+                nextRoom = new TrillionRoom();
+
+                nextRoom.StartTirllionRoom();
             }
             else
             {
