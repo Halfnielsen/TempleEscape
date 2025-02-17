@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace TempleEscape
 {
@@ -27,9 +28,9 @@ namespace TempleEscape
         private string[] options = new string[]
         {
             "1. Kina",
-            "2. Japan",
+            "2. Indien",
             "3. Sydkorea",
-            "4. Indien",
+            "4. Japan",
             "5. Rejs dig op fra stolen og gå over mod døren"
 
         };
@@ -43,6 +44,7 @@ namespace TempleEscape
         public void RoomIntro()
         {
             Console.Clear();
+            
             string introText = "Du befinder dig i et mørkt rum, belyst af flakkende fakler.\n\n" +
                             "Foran dig sidder en skikkelse på en trone. Silhuetten er mørk, men skærmen foran ham lyser hans ansigt op i et uhyggeligt skær.\n" +
                             "Foran ham er en stol, rettet mod skærmen. Du føler dig nærmest tvunget til at sætte dig i den... Der er dog en dør bag ham\n\n";
@@ -177,21 +179,28 @@ namespace TempleEscape
         private void ShowTextSlowly(string text)
         {
             bool skip = false;
-
+            
+            //Starter en ny tråd som er en asynkron opgave der
             //Lytter efter Enter tryk
-            Task.Run(() => CheckForEnter(ref skip)); // Passer referencen til skip variablen
+            Task.Run(() => CheckForEnter(ref skip)); 
 
-            foreach (char letter in text)
+            int startIndex = 0; // Starter fra begyndelsen af teksten
+
+            // Looper gennem teksten og viser hvert bogstav
+            while (startIndex < text.Length)
             {
                 if (skip)
                 {
-                    Console.Write(text.Substring(text.IndexOf(letter))); // Vis resten af teksten med det samme
+                    // Hvis "skip" er true, viser resten af teksten med det samme
+                    Console.Write(text.Substring(startIndex));
                     break;
                 }
 
-                Console.Write(letter);
+                Console.Write(text[startIndex]);
+                startIndex++;  // Gå til næste bogstav
                 Thread.Sleep(textSpeed);
             }
+
             Console.WriteLine(); 
         }
 
@@ -224,6 +233,7 @@ namespace TempleEscape
 
             nextRoom.SøjleRummet();
         }
+        
     }
 }
 
