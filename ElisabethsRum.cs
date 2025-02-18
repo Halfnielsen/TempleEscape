@@ -14,6 +14,7 @@ namespace TempleEscape
         public void Elisabeth()
 
         {
+            
             // korridoren opbevaret i et array
             string[] corridor =
             {
@@ -50,7 +51,8 @@ namespace TempleEscape
             }
             // spillerens position
             int playerX = corridor[0].Length / 2;
-            int playerY = corridor.Length - 1;
+            int playerY = corridor.Length-1;
+            
             // skjuler cursoren
             Console.CursorVisible = false;
             // spilleren printes på positionen 
@@ -73,7 +75,7 @@ namespace TempleEscape
                     ConsoleKey key = Console.ReadKey(true).Key;
 
                     // spilleren går 1 hak op, når man trykker på pil op
-                    if (key == ConsoleKey.UpArrow && playerY > 0)
+                    if (key == ConsoleKey.UpArrow && playerY >= 0)
                     {
                         playerY--;
                     }
@@ -89,13 +91,13 @@ namespace TempleEscape
                     {
                         Console.Clear();
 
-                        var replik = "Det er lang tid siden, nogen har gået gemmen den korridor. Godt klaret.";
+                        var replik = "Døren lukker tungt i bag dig, og vibrationen fra dens slag giver en følelse af, at rummet er levende.\nMørket lukker til omkring dig, da du hører den igen,\nstemmen.\n\"Det er lang tid siden, nogen har gået gemmen den korridor. Godt klaret.";
                         foreach (var character in replik)
                         {
                             Console.Write(character);
                             Thread.Sleep(40);
                         }
-                        var replik2 = "\nMen du kan ikke slappe af endnu.\nDu\nMå\nFørst\nBesejre\n\nMIG\n";
+                        var replik2 = "\nMen du kan ikke slappe af endnu.\nDu\nMå\nFørst\nBesejre\n\nMIG\"\n";
                         foreach (var character in replik2)
                         {
                             Console.Write(character);
@@ -145,7 +147,7 @@ namespace TempleEscape
                             int move;
                             while (true)
                             {
-                                Console.WriteLine("Indtast tallet på det felt, hvor du vil placere din brik.");
+                                Console.WriteLine("Fortæl mig, lille menneske, hvor vil du placere din brik?");
                                 string input = Console.ReadLine() ?? "";
                                 if (int.TryParse(input, out move) && move >= 1 && move <= 9 && board[move - 1] == ' ')
                                 {
@@ -183,11 +185,11 @@ namespace TempleEscape
                             if (CheckWin('X'))
                             {
                                 Console.Clear();
-                                var bossTabte = "Du vandt... Endelig.. \nEndelig er jeg fri... \nOg du er det samme...";
+                                var bossTabte = "Væggene begynder at ryste, hvad har du gjort? Stemmen gisper efter vejret:\n\"Du vandt... Endelig.. \nEndelig er jeg fri... \nOg du er det samme...\"";
                                 foreach (var character in bossTabte)
                                 {
                                     Console.Write(character);
-                                    Thread.Sleep(50);
+                                    Thread.Sleep(40);
                                 }
                                
                                 var punktum = "\n...";
