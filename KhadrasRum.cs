@@ -21,6 +21,7 @@ namespace TempleEscape
             {
                 Console.WriteLine("Korrekt");
                 Console.ReadLine();
+                Console.Clear();
                 nextRoom = new TrillionRoom();
 
                 nextRoom.StartTirllionRoom();
