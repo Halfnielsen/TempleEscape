@@ -100,7 +100,7 @@ namespace TempleEscape
             Console.ReadLine();
 
         }
-        public void TypewriterEffect(string tekst, int delay = 50)
+        public void TypewriterEffect(string tekst, int delay = 10)
         {
             foreach (char c in tekst)
             {
