@@ -93,7 +93,7 @@ namespace TempleEscape
                         foreach (var character in replik)
                         {
                             Console.Write(character);
-                            Thread.Sleep(40);
+                            Thread.Sleep(10);
                         }
                         var replik2 = "\nMen du kan ikke slappe af endnu.\nDu\nMå\nFørst\nBesejre\n\nMIG\n";
                         foreach (var character in replik2)
@@ -187,7 +187,7 @@ namespace TempleEscape
                                 foreach (var character in bossTabte)
                                 {
                                     Console.Write(character);
-                                    Thread.Sleep(50);
+                                    Thread.Sleep(1);
                                 }
                                
                                 var punktum = "\n...";
